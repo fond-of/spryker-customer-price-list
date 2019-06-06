@@ -2,29 +2,31 @@
 
 namespace FondOfSpryker\Zed\CustomerPriceList\Persistence\Propel\Mapper;
 
+use Generated\Shared\Transfer\FosPriceListEntityTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 use Generated\Shared\Transfer\PriceListTransfer;
-use Orm\Zed\PriceList\Persistence\FosPriceList;
-use Propel\Runtime\Collection\ObjectCollection;
 
 interface PriceListMapperInterface
 {
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection $fosPriceListCollection
+     * @param \Propel\Runtime\Collection\ObjectCollection|array $fosPriceListEntityTransfers
      * @param \Generated\Shared\Transfer\PriceListCollectionTransfer $priceListCollectionTransfer
      *
      * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
      */
-    public function mapEntityCollectionToTransfer(
-        ObjectCollection $fosPriceListCollection,
+    public function mapEntityTransfersToTransfer(
+        array $fosPriceListEntityTransfers,
         PriceListCollectionTransfer $priceListCollectionTransfer
     ): PriceListCollectionTransfer;
 
     /**
-     * @param \Orm\Zed\PriceList\Persistence\FosPriceList $fosPriceList
+     * @param \Generated\Shared\Transfer\FosPriceListEntityTransfer $fosPriceListEntityTransfer
      * @param \Generated\Shared\Transfer\PriceListTransfer $priceListTransfer
      *
      * @return \Generated\Shared\Transfer\PriceListTransfer
      */
-    public function mapEntityToTransfer(FosPriceList $fosPriceList, PriceListTransfer $priceListTransfer): PriceListTransfer;
+    public function mapEntityTransferToTransfer(
+        FosPriceListEntityTransfer $fosPriceListEntityTransfer,
+        PriceListTransfer $priceListTransfer
+    ): PriceListTransfer;
 }

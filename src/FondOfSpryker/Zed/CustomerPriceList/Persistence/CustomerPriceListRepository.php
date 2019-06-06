@@ -34,10 +34,10 @@ class CustomerPriceListRepository extends AbstractRepository implements Customer
                 ->endUse()
             ->endUse();
 
-        $fosPriceListCollection = $this->buildQueryFromCriteria($customerQuery)->find();
+        $fosPriceListEntityTransfers = $this->buildQueryFromCriteria($customerQuery)->find();
 
         return $this->getFactory()
             ->createPriceListMapper()
-            ->mapEntityCollectionToTransfer($fosPriceListCollection, new PriceListCollectionTransfer());
+            ->mapEntityTransfersToTransfer($fosPriceListEntityTransfers, new PriceListCollectionTransfer());
     }
 }

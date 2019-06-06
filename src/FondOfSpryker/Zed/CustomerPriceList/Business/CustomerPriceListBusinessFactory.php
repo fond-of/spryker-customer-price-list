@@ -16,6 +16,6 @@ class CustomerPriceListBusinessFactory extends AbstractBusinessFactory
      */
     public function createCustomerHydrator(): CustomerHydratorInterface
     {
-        return new CustomerHydrator();
+        return new CustomerHydrator($this->getRepository());
     }
 }
