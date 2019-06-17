@@ -2,8 +2,8 @@
 
 namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
-use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerHydrator;
-use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerHydratorInterface;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpander;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -12,10 +12,10 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 class CustomerPriceListBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @return \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerHydratorInterface
+     * @return \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface
      */
-    public function createCustomerHydrator(): CustomerHydratorInterface
+    public function createCustomerExpander(): CustomerExpanderInterface
     {
-        return new CustomerHydrator($this->getRepository());
+        return new CustomerExpander($this->getRepository());
     }
 }

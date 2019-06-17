@@ -16,8 +16,8 @@ class CustomerPriceListFacade extends AbstractFacade implements CustomerPriceLis
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function hydrateCustomer(CustomerTransfer $customerTransfer): CustomerTransfer
+    public function expandCustomer(CustomerTransfer $customerTransfer): CustomerTransfer
     {
-        return $this->getFactory()->createCustomerHydrator()->hydrate($customerTransfer);
+        return $this->getFactory()->createCustomerExpander()->expand($customerTransfer);
     }
 }

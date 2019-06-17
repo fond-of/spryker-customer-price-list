@@ -5,7 +5,7 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business\Model;
 use FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
 
-class CustomerHydrator implements CustomerHydratorInterface
+class CustomerExpander implements CustomerExpanderInterface
 {
     /**
      * @var \FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryInterface
@@ -25,7 +25,7 @@ class CustomerHydrator implements CustomerHydratorInterface
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function hydrate(CustomerTransfer $customerTransfer): CustomerTransfer
+    public function expand(CustomerTransfer $customerTransfer): CustomerTransfer
     {
         if ($customerTransfer->getIdCustomer() === null) {
             return $customerTransfer;

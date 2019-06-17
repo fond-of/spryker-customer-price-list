@@ -1,15 +1,15 @@
 <?php
 
-namespace FondOfSpryker\Zed\CustomerPriceList\Business\Model;
+namespace FondOfSpryker\Client\CustomerPriceList\Zed;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 
-interface CustomerHydratorInterface
+interface CustomerPriceListStubInterface
 {
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
      */
-    public function hydrate(CustomerTransfer $customerTransfer): CustomerTransfer;
+    public function expandCustomer(CustomerTransfer $customerTransfer): CustomerTransfer;
 }

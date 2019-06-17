@@ -1,22 +1,26 @@
 <?php
 
-namespace FondOfSpryker\Zed\CustomerPriceList\Communication\Plugin\CustomerB2b;
+namespace FondOfSpryker\Zed\CustomerPriceList\Communication\Plugin\Customer;
 
-use FondOfSpryker\Zed\CustomerB2b\Dependency\Plugin\CustomerB2bHydrationPluginInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Spryker\Zed\Customer\Dependency\Plugin\CustomerTransferExpanderPluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \FondOfSpryker\Zed\CustomerPriceList\Business\CustomerPriceListFacadeInterface getFacade()
  */
-class PriceListCustomerB2bHydrationPlugin extends AbstractPlugin implements CustomerB2bHydrationPluginInterface
+class PriceListCustomerTransferExpanderPlugin extends AbstractPlugin implements CustomerTransferExpanderPluginInterface
 {
     /**
+     * {@inheritdoc}
+     *
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
+     * @api
+     *
      */
-    public function hydrate(CustomerTransfer $customerTransfer): CustomerTransfer
+    public function expandTransfer(CustomerTransfer $customerTransfer): CustomerTransfer
     {
         return $this->getFacade()->expandCustomer($customerTransfer);
     }

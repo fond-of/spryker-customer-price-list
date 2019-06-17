@@ -1,12 +1,14 @@
 <?php
 
-namespace FondOfSpryker\Zed\CustomerPriceList\Business;
+namespace FondOfSpryker\Client\CustomerPriceList;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 
-interface CustomerPriceListFacadeInterface
+interface CustomerPriceListClientInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
