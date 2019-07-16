@@ -10,7 +10,7 @@ use Spryker\Glue\Kernel\AbstractPlugin;
 /**
  * @method \FondOfSpryker\Glue\CustomerPriceList\CustomerPriceListFactory getFactory()
  */
-class PriceListCustomerTransferExpanderPlugin extends AbstractPlugin implements CustomerExpanderPluginInterface
+class PriceListCustomerExpanderPlugin extends AbstractPlugin implements CustomerExpanderPluginInterface
 {
     /**
      * Specification:
