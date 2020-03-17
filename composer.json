@@ -9,7 +9,12 @@
     }
   ],
   "require": {
-    "php": ">=7.1"
+    "php": ">=7.1",
+    "fond-of-spryker/customer-b2b": "dev-master",
+    "spryker/customer": "^7.0.0",
+    "spryker/customers-rest-api-extension": "^1.0.0",
+    "spryker/glue-application": "^1.0.0",
+    "spryker/zed-request": "^3.0.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.4",
@@ -28,7 +33,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "FondOfSpryker\\": "tests/FondOfSpryker/"
+      "FondOfSpryker\\": "tests/FondOfSpryker/",
+      "Generated\\": "src/Generated/"
     }
   }
 }
