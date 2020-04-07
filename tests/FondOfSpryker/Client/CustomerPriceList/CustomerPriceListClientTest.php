@@ -5,6 +5,7 @@ namespace FondOfSpryker\Client\CustomerPriceList;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CustomerPriceList\Zed\CustomerPriceListStubInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
 class CustomerPriceListClientTest extends Unit
 {
@@ -29,6 +30,11 @@ class CustomerPriceListClientTest extends Unit
     protected $customerPriceListStubInterfaceMock;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    protected $priceListCollectionTransferMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -42,6 +48,10 @@ class CustomerPriceListClientTest extends Unit
             ->getMock();
 
         $this->customerPriceListStubInterfaceMock = $this->getMockBuilder(CustomerPriceListStubInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -66,6 +76,28 @@ class CustomerPriceListClientTest extends Unit
         $this->assertInstanceOf(
             CustomerTransfer::class,
             $this->customerPriceListClient->expandCustomer(
+                $this->customerTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetPriceListCollectionByIdCustomer(): void
+    {
+        $this->customerPriceListFactoryMock->expects($this->atLeastOnce())
+            ->method('createZedStub')
+            ->willReturn($this->customerPriceListStubInterfaceMock);
+
+        $this->customerPriceListStubInterfaceMock->expects($this->atLeastOnce())
+            ->method('getPriceListCollectionByIdCustomer')
+            ->with($this->customerTransferMock)
+            ->willReturn($this->priceListCollectionTransferMock);
+
+        $this->assertInstanceOf(
+            PriceListCollectionTransfer::class,
+            $this->customerPriceListClient->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
             )
         );

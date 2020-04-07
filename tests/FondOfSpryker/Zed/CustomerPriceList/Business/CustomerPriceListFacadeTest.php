@@ -4,7 +4,9 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReaderInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
 class CustomerPriceListFacadeTest extends Unit
 {
@@ -29,6 +31,16 @@ class CustomerPriceListFacadeTest extends Unit
     protected $customerExpanderInterfaceMock;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReaderInterface
+     */
+    protected $customerReaderInterfaceMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    protected $priceListCollectionTransferMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -42,6 +54,14 @@ class CustomerPriceListFacadeTest extends Unit
             ->getMock();
 
         $this->customerExpanderInterfaceMock = $this->getMockBuilder(CustomerExpanderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->customerReaderInterfaceMock = $this->getMockBuilder(CustomerReaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -66,6 +86,28 @@ class CustomerPriceListFacadeTest extends Unit
         $this->assertInstanceOf(
             CustomerTransfer::class,
             $this->customerPriceListFacade->expandCustomer($this->customerTransferMock)
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetPriceListCollectionByIdCustomer(): void
+    {
+        $this->customerPriceListBusinessFactoryMock->expects($this->atLeastOnce())
+            ->method('createCustomerReader')
+            ->willReturn($this->customerReaderInterfaceMock);
+
+        $this->customerReaderInterfaceMock->expects($this->atLeastOnce())
+            ->method('getPriceListCollectionByIdCustomer')
+            ->with($this->customerTransferMock)
+            ->willReturn($this->priceListCollectionTransferMock);
+
+        $this->assertInstanceOf(
+            PriceListCollectionTransfer::class,
+            $this->customerPriceListFacade->getPriceListCollectionByIdCustomer(
+                $this->customerTransferMock
+            )
         );
     }
 }
