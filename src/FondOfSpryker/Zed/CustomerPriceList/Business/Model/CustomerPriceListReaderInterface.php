@@ -5,7 +5,7 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business\Model;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
-interface CustomerReaderInterface
+interface CustomerPriceListReaderInterface
 {
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer

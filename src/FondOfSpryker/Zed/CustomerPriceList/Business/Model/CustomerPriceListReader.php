@@ -6,10 +6,10 @@ use FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryI
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
-class CustomerReader implements CustomerReaderInterface
+class CustomerPriceListReader implements CustomerPriceListReaderInterface
 {
     /**
-     * @var \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListRepositoryInterface
+     * @var \FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryInterface
      */
     protected $customerPriceListRepository;
 
@@ -33,8 +33,6 @@ class CustomerReader implements CustomerReaderInterface
 
         $idCustomer = $customerTransfer->getIdCustomer();
 
-        $priceListCollectionTransfer = $this->customerPriceListRepository->getPriceListCollectionByIdCustomer($idCustomer);
-
-        return $priceListCollectionTransfer;
+        return $this->customerPriceListRepository->getPriceListCollectionByIdCustomer($idCustomer);
     }
 }

@@ -4,8 +4,8 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface;
-use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReader;
-use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReaderInterface;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReader;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -22,10 +22,10 @@ class CustomerPriceListBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReaderInterface
+     * @return \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface
      */
-    public function createCustomerReader(): CustomerReaderInterface
+    public function createCustomerPriceListReader(): CustomerPriceListReaderInterface
     {
-        return new CustomerReader($this->getRepository());
+        return new CustomerPriceListReader($this->getRepository());
     }
 }

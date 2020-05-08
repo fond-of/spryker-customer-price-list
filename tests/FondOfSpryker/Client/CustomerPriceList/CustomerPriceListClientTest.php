@@ -73,8 +73,8 @@ class CustomerPriceListClientTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->customerPriceListClient->expandCustomer(
                 $this->customerTransferMock
             )
@@ -95,8 +95,8 @@ class CustomerPriceListClientTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->priceListCollectionTransferMock);
 
-        $this->assertInstanceOf(
-            PriceListCollectionTransfer::class,
+        $this->assertEquals(
+            $this->priceListCollectionTransferMock,
             $this->customerPriceListClient->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
             )

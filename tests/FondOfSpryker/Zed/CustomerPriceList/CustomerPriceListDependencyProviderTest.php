@@ -34,8 +34,8 @@ class CustomerPriceListDependencyProviderTest extends Unit
      */
     public function testProvidePersistenceLayerDependencies(): void
     {
-        $this->assertInstanceOf(
-            Container::class,
+        $this->assertEquals(
+            $this->containerMock,
             $this->customerPriceListDependencyProvider->providePersistenceLayerDependencies(
                 $this->containerMock
             )

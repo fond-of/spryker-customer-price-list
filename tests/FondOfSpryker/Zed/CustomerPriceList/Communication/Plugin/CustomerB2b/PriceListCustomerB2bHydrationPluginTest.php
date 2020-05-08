@@ -50,9 +50,11 @@ class PriceListCustomerB2bHydrationPluginTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
-            $this->priceListCustomerB2bHydrationPlugin->hydrate($this->customerTransferMock)
+        $this->assertEquals(
+            $this->customerTransferMock,
+            $this->priceListCustomerB2bHydrationPlugin->hydrate(
+                $this->customerTransferMock
+            )
         );
     }
 }

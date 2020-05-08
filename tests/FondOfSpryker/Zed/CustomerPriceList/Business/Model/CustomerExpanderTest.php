@@ -47,13 +47,15 @@ class CustomerExpanderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->idCustomer = 1;
-
         $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->customerExpander = new CustomerExpander($this->customerPriceListRepositoryInterfaceMock);
+        $this->idCustomer = 1;
+
+        $this->customerExpander = new CustomerExpander(
+            $this->customerPriceListRepositoryInterfaceMock
+        );
     }
 
     /**
@@ -75,8 +77,8 @@ class CustomerExpanderTest extends Unit
             ->with($this->priceListCollectionTransferMock)
             ->willReturnSelf();
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->customerExpander->expand(
                 $this->customerTransferMock
             )
@@ -92,8 +94,8 @@ class CustomerExpanderTest extends Unit
             ->method('getIdCustomer')
             ->willReturn(null);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->customerExpander->expand(
                 $this->customerTransferMock
             )

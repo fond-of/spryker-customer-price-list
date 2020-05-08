@@ -7,12 +7,12 @@ use FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryI
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
-class CustomerReaderTest extends Unit
+class CustomerPriceListReaderTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerReader
+     * @var \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReader
      */
-    protected $customerReader;
+    protected $customerPriceListReader;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryInterface
@@ -53,7 +53,7 @@ class CustomerReaderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->customerReader = new CustomerReader(
+        $this->customerPriceListReader = new CustomerPriceListReader(
             $this->customerPriceListRepositoryInterfaceMock
         );
     }
@@ -78,7 +78,7 @@ class CustomerReaderTest extends Unit
 
         $this->assertInstanceOf(
             PriceListCollectionTransfer::class,
-            $this->customerReader->getPriceListCollectionByIdCustomer(
+            $this->customerPriceListReader->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
             )
         );

@@ -49,8 +49,8 @@ class CustomerExpanderTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->customerExpander->expand($this->customerTransferMock)
         );
     }

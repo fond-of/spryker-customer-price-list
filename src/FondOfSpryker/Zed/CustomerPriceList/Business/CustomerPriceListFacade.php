@@ -29,6 +29,6 @@ class CustomerPriceListFacade extends AbstractFacade implements CustomerPriceLis
      */
     public function getPriceListCollectionByIdCustomer(CustomerTransfer $customerTransfer): PriceListCollectionTransfer
     {
-        return $this->getFactory()->createCustomerReader()->getPriceListCollectionByIdCustomer($customerTransfer);
+        return $this->getFactory()->createCustomerPriceListReader()->getPriceListCollectionByIdCustomer($customerTransfer);
     }
 }
