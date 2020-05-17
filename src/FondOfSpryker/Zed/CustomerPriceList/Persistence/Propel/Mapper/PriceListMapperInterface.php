@@ -9,7 +9,7 @@ use Generated\Shared\Transfer\PriceListTransfer;
 interface PriceListMapperInterface
 {
     /**
-     * @param \Propel\Runtime\Collection\ObjectCollection|array $fosPriceListEntityTransfers
+     * @param array $fosPriceListEntityTransfers
      * @param \Generated\Shared\Transfer\PriceListCollectionTransfer $priceListCollectionTransfer
      *
      * @return \Generated\Shared\Transfer\PriceListCollectionTransfer

@@ -14,7 +14,7 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 class CustomerPriceListPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return \Orm\Zed\Customer\Persistence\SpyCustomerQuery
+     * @return \Orm\Zed\PriceList\Persistence\FosPriceListQuery
      */
     public function getPriceListQuery(): FosPriceListQuery
     {

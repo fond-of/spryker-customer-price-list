@@ -18,8 +18,6 @@ class CustomerPriceListFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Client\CustomerPriceList\Dependency\Client\CustomerPriceListToZedRequestClientInterface
      */
     protected function getZedRequestClient(): CustomerPriceListToZedRequestClientInterface
