@@ -12,13 +12,13 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class PriceListCustomerTransferExpanderPlugin extends AbstractPlugin implements CustomerTransferExpanderPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
+     * @api
      *
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerTransfer
-     * @api
-     *
      */
     public function expandTransfer(CustomerTransfer $customerTransfer): CustomerTransfer
     {
