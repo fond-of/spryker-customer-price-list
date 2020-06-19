@@ -4,6 +4,7 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface;
 use FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepository;
 
 class CustomerPriceListBusinessFactoryTest extends Unit
@@ -39,6 +40,17 @@ class CustomerPriceListBusinessFactoryTest extends Unit
         $this->assertInstanceOf(
             CustomerExpanderInterface::class,
             $this->customerPriceListBusinessFactory->createCustomerExpander()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testCreateCustomerPriceListReader(): void
+    {
+        $this->assertInstanceOf(
+            CustomerPriceListReaderInterface::class,
+            $this->customerPriceListBusinessFactory->createCustomerPriceListReader()
         );
     }
 }

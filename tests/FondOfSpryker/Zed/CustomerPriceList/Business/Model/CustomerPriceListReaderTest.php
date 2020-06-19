@@ -7,12 +7,12 @@ use FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryI
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
-class CustomerExpanderTest extends Unit
+class CustomerPriceListReaderTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpander
+     * @var \FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReader
      */
-    protected $customerExpander;
+    protected $customerPriceListReader;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CustomerPriceList\Persistence\CustomerPriceListRepositoryInterface
@@ -47,13 +47,13 @@ class CustomerExpanderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->idCustomer = 1;
+
         $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->idCustomer = 1;
-
-        $this->customerExpander = new CustomerExpander(
+        $this->customerPriceListReader = new CustomerPriceListReader(
             $this->customerPriceListRepositoryInterfaceMock
         );
     }
@@ -61,8 +61,12 @@ class CustomerExpanderTest extends Unit
     /**
      * @return void
      */
-    public function testExpand(): void
+    public function testGetPriceListCollectionByIdCustomer(): void
     {
+        $this->customerTransferMock->expects($this->atLeastOnce())
+            ->method('requireIdCustomer')
+            ->willReturnSelf();
+
         $this->customerTransferMock->expects($this->atLeastOnce())
             ->method('getIdCustomer')
             ->willReturn($this->idCustomer);
@@ -72,31 +76,9 @@ class CustomerExpanderTest extends Unit
             ->with($this->idCustomer)
             ->willReturn($this->priceListCollectionTransferMock);
 
-        $this->customerTransferMock->expects($this->atLeastOnce())
-            ->method('setPriceListCollection')
-            ->with($this->priceListCollectionTransferMock)
-            ->willReturnSelf();
-
-        $this->assertEquals(
-            $this->customerTransferMock,
-            $this->customerExpander->expand(
-                $this->customerTransferMock
-            )
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testExpandIdCustomerNull(): void
-    {
-        $this->customerTransferMock->expects($this->atLeastOnce())
-            ->method('getIdCustomer')
-            ->willReturn(null);
-
-        $this->assertEquals(
-            $this->customerTransferMock,
-            $this->customerExpander->expand(
+        $this->assertInstanceOf(
+            PriceListCollectionTransfer::class,
+            $this->customerPriceListReader->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
             )
         );

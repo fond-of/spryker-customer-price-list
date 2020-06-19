@@ -4,7 +4,9 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface;
+use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
 class CustomerPriceListFacadeTest extends Unit
 {
@@ -29,6 +31,16 @@ class CustomerPriceListFacadeTest extends Unit
     protected $customerExpanderInterfaceMock;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface
+     */
+    protected $customerPriceListReaderInterfaceMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    protected $priceListCollectionTransferMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -42,6 +54,14 @@ class CustomerPriceListFacadeTest extends Unit
             ->getMock();
 
         $this->customerExpanderInterfaceMock = $this->getMockBuilder(CustomerExpanderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->customerPriceListReaderInterfaceMock = $this->getMockBuilder(CustomerPriceListReaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -63,9 +83,33 @@ class CustomerPriceListFacadeTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
-            $this->customerPriceListFacade->expandCustomer($this->customerTransferMock)
+        $this->assertEquals(
+            $this->customerTransferMock,
+            $this->customerPriceListFacade->expandCustomer(
+                $this->customerTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetPriceListCollectionByIdCustomer(): void
+    {
+        $this->customerPriceListBusinessFactoryMock->expects($this->atLeastOnce())
+            ->method('createCustomerPriceListReader')
+            ->willReturn($this->customerPriceListReaderInterfaceMock);
+
+        $this->customerPriceListReaderInterfaceMock->expects($this->atLeastOnce())
+            ->method('getPriceListCollectionByIdCustomer')
+            ->with($this->customerTransferMock)
+            ->willReturn($this->priceListCollectionTransferMock);
+
+        $this->assertEquals(
+            $this->priceListCollectionTransferMock,
+            $this->customerPriceListFacade->getPriceListCollectionByIdCustomer(
+                $this->customerTransferMock
+            )
         );
     }
 }

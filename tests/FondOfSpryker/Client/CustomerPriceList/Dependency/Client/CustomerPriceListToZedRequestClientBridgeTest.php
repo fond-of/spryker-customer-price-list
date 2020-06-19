@@ -58,8 +58,8 @@ class CustomerPriceListToZedRequestClientBridgeTest extends Unit
             ->with($this->url, $this->transferInterfaceMock)
             ->willReturn($this->transferInterfaceMock);
 
-        $this->assertInstanceOf(
-            TransferInterface::class,
+        $this->assertEquals(
+            $this->transferInterfaceMock,
             $this->customerPriceListToZedRequestClientBridge->call(
                 $this->url,
                 $this->transferInterfaceMock

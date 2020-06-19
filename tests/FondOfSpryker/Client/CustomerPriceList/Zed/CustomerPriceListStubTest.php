@@ -5,6 +5,7 @@ namespace FondOfSpryker\Client\CustomerPriceList\Zed;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CustomerPriceList\Dependency\Client\CustomerPriceListToZedRequestClientInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\PriceListCollectionTransfer;
 
 class CustomerPriceListStubTest extends Unit
 {
@@ -26,7 +27,17 @@ class CustomerPriceListStubTest extends Unit
     /**
      * @var string
      */
-    protected $url;
+    protected $expandCustomerUrl;
+
+    /**
+     * @var string
+     */
+    protected $getPriceListCollectionByIdCustomerUrl;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    protected $priceListCollectionTransferMock;
 
     /**
      * @return void
@@ -41,7 +52,13 @@ class CustomerPriceListStubTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->url = '/customer-price-list/gateway/expand-customer';
+        $this->expandCustomerUrl = '/customer-price-list/gateway/expand-customer';
+
+        $this->getPriceListCollectionByIdCustomerUrl = '/customer-price-list/gateway/get-price-list-collection-by-id-customer';
+
+        $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->customerPriceListStub = new CustomerPriceListStub(
             $this->customerPriceListToZedRequestClientInterfaceMock
@@ -55,12 +72,30 @@ class CustomerPriceListStubTest extends Unit
     {
         $this->customerPriceListToZedRequestClientInterfaceMock->expects($this->atLeastOnce())
             ->method('call')
-            ->with($this->url, $this->customerTransferMock)
+            ->with($this->expandCustomerUrl, $this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->customerPriceListStub->expandCustomer(
+                $this->customerTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testCustomerPriceListStub(): void
+    {
+        $this->customerPriceListToZedRequestClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('call')
+            ->with($this->getPriceListCollectionByIdCustomerUrl, $this->customerTransferMock)
+            ->willReturn($this->priceListCollectionTransferMock);
+
+        $this->assertEquals(
+            $this->priceListCollectionTransferMock,
+            $this->customerPriceListStub->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
             )
         );

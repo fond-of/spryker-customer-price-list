@@ -74,8 +74,8 @@ class PriceListCustomerExpanderPluginTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $this->assertInstanceOf(
-            CustomerTransfer::class,
+        $this->assertEquals(
+            $this->customerTransferMock,
             $this->priceListCustomerExpanderPlugin->expand(
                 $this->customerTransferMock,
                 $this->restRequestInterfaceMock
