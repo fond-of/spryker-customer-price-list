@@ -4,6 +4,7 @@ namespace FondOfSpryker\Zed\CustomerPriceList\Business;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
+use Generated\Shared\Transfer\PriceListRequestTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -30,5 +31,15 @@ class CustomerPriceListFacade extends AbstractFacade implements CustomerPriceLis
     public function getPriceListCollectionByIdCustomer(CustomerTransfer $customerTransfer): PriceListCollectionTransfer
     {
         return $this->getFactory()->createCustomerPriceListReader()->getPriceListCollectionByIdCustomer($customerTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceListRequestTransfer $priceListRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    public function getPriceListsByIdCustomerAndCompanyUuid(PriceListRequestTransfer $priceListRequestTransfer): PriceListCollectionTransfer
+    {
+        return $this->getFactory()->createCustomerPriceListReader()->getPriceListsByIdCustomerAndCompanyUuid($priceListRequestTransfer);
     }
 }

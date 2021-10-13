@@ -5,6 +5,7 @@ namespace FondOfSpryker\Client\CustomerPriceList\Zed;
 use FondOfSpryker\Client\CustomerPriceList\Dependency\Client\CustomerPriceListToZedRequestClientInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
+use Generated\Shared\Transfer\PriceListRequestTransfer;
 
 class CustomerPriceListStub implements CustomerPriceListStubInterface
 {
@@ -49,5 +50,20 @@ class CustomerPriceListStub implements CustomerPriceListStubInterface
         $priceListCollectionTransfer = $this->zedRequestClient->call($url, $customerTransfer);
 
         return $priceListCollectionTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceListRequestTransfer $priceListRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    public function getPriceListsByIdCustomerAndCompanyUuid(PriceListRequestTransfer $priceListRequestTransfer): PriceListCollectionTransfer
+    {
+        $url = '/customer-price-list/gateway/get-price-lists-by-id-customer-and-company-uuid';
+
+        /** @var \Generated\Shared\Transfer\PriceListTransfer $priceListTransfer */
+        $priceListTransfer = $this->zedRequestClient->call($url, $priceListRequestTransfer);
+
+        return $priceListTransfer;
     }
 }

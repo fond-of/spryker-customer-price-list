@@ -4,6 +4,7 @@ namespace FondOfSpryker\Client\CustomerPriceList;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
+use Generated\Shared\Transfer\PriceListRequestTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -31,5 +32,15 @@ class CustomerPriceListClient extends AbstractClient implements CustomerPriceLis
     public function getPriceListCollectionByIdCustomer(CustomerTransfer $customerTransfer): PriceListCollectionTransfer
     {
         return $this->getFactory()->createZedStub()->getPriceListCollectionByIdCustomer($customerTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceListRequestTransfer $priceListRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    public function getPriceListsByIdCustomerAndCompanyUuid(PriceListRequestTransfer $priceListRequestTransfer): PriceListCollectionTransfer
+    {
+        return $this->getFactory()->createZedStub()->getPriceListsByIdCustomerAndCompanyUuid($priceListRequestTransfer);
     }
 }

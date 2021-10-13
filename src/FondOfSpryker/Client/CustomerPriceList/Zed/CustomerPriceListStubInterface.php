@@ -4,6 +4,7 @@ namespace FondOfSpryker\Client\CustomerPriceList\Zed;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
+use Generated\Shared\Transfer\PriceListRequestTransfer;
 
 interface CustomerPriceListStubInterface
 {
@@ -20,4 +21,11 @@ interface CustomerPriceListStubInterface
      * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
      */
     public function getPriceListCollectionByIdCustomer(CustomerTransfer $customerTransfer): PriceListCollectionTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceListRequestTransfer $priceListRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
+     */
+    public function getPriceListsByIdCustomerAndCompanyUuid(PriceListRequestTransfer $priceListRequestTransfer): PriceListCollectionTransfer;
 }

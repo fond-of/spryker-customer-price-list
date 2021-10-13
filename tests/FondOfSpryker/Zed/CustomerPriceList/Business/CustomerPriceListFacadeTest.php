@@ -7,6 +7,7 @@ use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerExpanderInterface
 use FondOfSpryker\Zed\CustomerPriceList\Business\Model\CustomerPriceListReaderInterface;
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
+use Generated\Shared\Transfer\PriceListRequestTransfer;
 
 class CustomerPriceListFacadeTest extends Unit
 {
@@ -19,6 +20,11 @@ class CustomerPriceListFacadeTest extends Unit
      * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CustomerTransfer
      */
     protected $customerTransferMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\PriceListRequestTransfer
+     */
+    protected $priceListRequestTransferMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CustomerPriceList\Business\CustomerPriceListBusinessFactory
@@ -62,6 +68,10 @@ class CustomerPriceListFacadeTest extends Unit
             ->getMock();
 
         $this->priceListCollectionTransferMock = $this->getMockBuilder(PriceListCollectionTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->priceListRequestTransferMock = $this->getMockBuilder(PriceListRequestTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -109,6 +119,28 @@ class CustomerPriceListFacadeTest extends Unit
             $this->priceListCollectionTransferMock,
             $this->customerPriceListFacade->getPriceListCollectionByIdCustomer(
                 $this->customerTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetPriceListsByIdCustomerAndCompanyUuid(): void
+    {
+        $this->customerPriceListBusinessFactoryMock->expects($this->atLeastOnce())
+            ->method('createCustomerPriceListReader')
+            ->willReturn($this->customerPriceListReaderInterfaceMock);
+
+        $this->customerPriceListReaderInterfaceMock->expects($this->atLeastOnce())
+            ->method('getPriceListsByIdCustomerAndCompanyUuid')
+            ->with($this->priceListRequestTransferMock)
+            ->willReturn($this->priceListCollectionTransferMock);
+
+        $this->assertEquals(
+            $this->priceListCollectionTransferMock,
+            $this->customerPriceListFacade->getPriceListsByIdCustomerAndCompanyUuid(
+                $this->priceListRequestTransferMock
             )
         );
     }
