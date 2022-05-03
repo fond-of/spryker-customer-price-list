@@ -17,25 +17,22 @@ class CustomerPriceListRepository extends AbstractRepository implements Customer
      */
     public function getPriceListCollectionByIdCustomer(int $idCustomer): PriceListCollectionTransfer
     {
-        $customerQuery = $this->getFactory()
+        $query = $this->getFactory()
             ->getPriceListQuery()
-            ->joinWithSpyCompany()
+            ->clear()
             ->useSpyCompanyQuery()
                 ->filterByIsActive(true)
-                ->joinWithCompanyUser()
                 ->useCompanyUserQuery()
                     ->filterByIsActive(true)
-                    ->joinWithCustomer()
                     ->useCustomerQuery()
                         ->filterByIdCustomer($idCustomer)
                     ->endUse()
                 ->endUse()
-            ->endUse();
-
-        $fosPriceListEntityTransfers = $this->buildQueryFromCriteria($customerQuery)->find();
+            ->endUse()
+            ->groupByIdPriceList();
 
         return $this->getFactory()
             ->createPriceListMapper()
-            ->mapEntityTransfersToTransfer($fosPriceListEntityTransfers, new PriceListCollectionTransfer());
+            ->mapEntityCollectionToTransfer($query->find());
     }
 }
