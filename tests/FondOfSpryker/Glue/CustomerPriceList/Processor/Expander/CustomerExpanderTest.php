@@ -51,7 +51,7 @@ class CustomerExpanderTest extends Unit
 
         $this->assertEquals(
             $this->customerTransferMock,
-            $this->customerExpander->expand($this->customerTransferMock)
+            $this->customerExpander->expand($this->customerTransferMock),
         );
     }
 }

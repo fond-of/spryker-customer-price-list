@@ -44,7 +44,7 @@ class CustomerPriceListToZedRequestClientBridgeTest extends Unit
         $this->url = 'url';
 
         $this->customerPriceListToZedRequestClientBridge = new CustomerPriceListToZedRequestClientBridge(
-            $this->zedRequestClientInterfaceMock
+            $this->zedRequestClientInterfaceMock,
         );
     }
 
@@ -62,8 +62,8 @@ class CustomerPriceListToZedRequestClientBridgeTest extends Unit
             $this->transferInterfaceMock,
             $this->customerPriceListToZedRequestClientBridge->call(
                 $this->url,
-                $this->transferInterfaceMock
-            )
+                $this->transferInterfaceMock,
+            ),
         );
     }
 }

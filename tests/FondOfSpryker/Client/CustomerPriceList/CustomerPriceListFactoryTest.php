@@ -57,7 +57,7 @@ class CustomerPriceListFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CustomerPriceListStubInterface::class,
-            $this->customerPriceListFactory->createZedStub()
+            $this->customerPriceListFactory->createZedStub(),
         );
     }
 }

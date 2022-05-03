@@ -54,7 +54,7 @@ class CustomerPriceListReaderTest extends Unit
             ->getMock();
 
         $this->customerPriceListReader = new CustomerPriceListReader(
-            $this->customerPriceListRepositoryInterfaceMock
+            $this->customerPriceListRepositoryInterfaceMock,
         );
     }
 
@@ -79,8 +79,8 @@ class CustomerPriceListReaderTest extends Unit
         $this->assertInstanceOf(
             PriceListCollectionTransfer::class,
             $this->customerPriceListReader->getPriceListCollectionByIdCustomer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }
