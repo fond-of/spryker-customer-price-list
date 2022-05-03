@@ -61,7 +61,7 @@ class CustomerPriceListStubTest extends Unit
             ->getMock();
 
         $this->customerPriceListStub = new CustomerPriceListStub(
-            $this->customerPriceListToZedRequestClientInterfaceMock
+            $this->customerPriceListToZedRequestClientInterfaceMock,
         );
     }
 
@@ -78,8 +78,8 @@ class CustomerPriceListStubTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->customerPriceListStub->expandCustomer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 
@@ -96,8 +96,8 @@ class CustomerPriceListStubTest extends Unit
         $this->assertEquals(
             $this->priceListCollectionTransferMock,
             $this->customerPriceListStub->getPriceListCollectionByIdCustomer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }

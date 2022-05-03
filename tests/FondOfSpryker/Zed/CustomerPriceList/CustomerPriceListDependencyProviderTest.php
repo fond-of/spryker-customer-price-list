@@ -37,8 +37,8 @@ class CustomerPriceListDependencyProviderTest extends Unit
         $this->assertEquals(
             $this->containerMock,
             $this->customerPriceListDependencyProvider->providePersistenceLayerDependencies(
-                $this->containerMock
-            )
+                $this->containerMock,
+            ),
         );
     }
 }

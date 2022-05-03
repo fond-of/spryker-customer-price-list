@@ -78,8 +78,8 @@ class PriceListCustomerExpanderPluginTest extends Unit
             $this->customerTransferMock,
             $this->priceListCustomerExpanderPlugin->expand(
                 $this->customerTransferMock,
-                $this->restRequestInterfaceMock
-            )
+                $this->restRequestInterfaceMock,
+            ),
         );
     }
 }

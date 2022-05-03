@@ -39,7 +39,7 @@ class CustomerPriceListBusinessFactoryTest extends Unit
     {
         $this->assertInstanceOf(
             CustomerExpanderInterface::class,
-            $this->customerPriceListBusinessFactory->createCustomerExpander()
+            $this->customerPriceListBusinessFactory->createCustomerExpander(),
         );
     }
 
@@ -50,7 +50,7 @@ class CustomerPriceListBusinessFactoryTest extends Unit
     {
         $this->assertInstanceOf(
             CustomerPriceListReaderInterface::class,
-            $this->customerPriceListBusinessFactory->createCustomerPriceListReader()
+            $this->customerPriceListBusinessFactory->createCustomerPriceListReader(),
         );
     }
 }

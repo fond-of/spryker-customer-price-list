@@ -9,7 +9,7 @@ use Generated\Shared\Transfer\PriceListTransfer;
 class PriceListMapper implements PriceListMapperInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\FosPriceListEntityTransfer[] $fosPriceListEntityTransfers
+     * @param array<\Generated\Shared\Transfer\FosPriceListEntityTransfer> $fosPriceListEntityTransfers
      * @param \Generated\Shared\Transfer\PriceListCollectionTransfer $priceListCollectionTransfer
      *
      * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
@@ -40,7 +40,7 @@ class PriceListMapper implements PriceListMapperInterface
     ): PriceListTransfer {
         return $priceListTransfer->fromArray(
             $fosPriceListEntityTransfer->toArray(),
-            true
+            true,
         );
     }
 }

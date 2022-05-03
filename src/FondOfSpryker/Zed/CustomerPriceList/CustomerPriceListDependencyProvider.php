@@ -8,6 +8,9 @@ use Spryker\Zed\Kernel\Container;
 
 class CustomerPriceListDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const PROPEL_PRICE_LIST_QUERY = 'PROPEL_PRICE_LIST_QUERY';
 
     /**
