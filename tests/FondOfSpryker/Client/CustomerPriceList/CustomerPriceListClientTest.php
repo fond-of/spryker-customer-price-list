@@ -76,8 +76,8 @@ class CustomerPriceListClientTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->customerPriceListClient->expandCustomer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 
@@ -98,8 +98,8 @@ class CustomerPriceListClientTest extends Unit
         $this->assertEquals(
             $this->priceListCollectionTransferMock,
             $this->customerPriceListClient->getPriceListCollectionByIdCustomer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }

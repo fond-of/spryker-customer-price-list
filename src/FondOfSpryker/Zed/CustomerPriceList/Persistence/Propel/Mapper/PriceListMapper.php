@@ -2,45 +2,36 @@
 
 namespace FondOfSpryker\Zed\CustomerPriceList\Persistence\Propel\Mapper;
 
-use Generated\Shared\Transfer\FosPriceListEntityTransfer;
 use Generated\Shared\Transfer\PriceListCollectionTransfer;
 use Generated\Shared\Transfer\PriceListTransfer;
+use Orm\Zed\PriceList\Persistence\Base\FosPriceList;
+use Propel\Runtime\Collection\ObjectCollection;
 
 class PriceListMapper implements PriceListMapperInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\FosPriceListEntityTransfer[] $fosPriceListEntityTransfers
-     * @param \Generated\Shared\Transfer\PriceListCollectionTransfer $priceListCollectionTransfer
+     * @param \Propel\Runtime\Collection\ObjectCollection<\Orm\Zed\PriceList\Persistence\Base\FosPriceList> $entityCollection
      *
      * @return \Generated\Shared\Transfer\PriceListCollectionTransfer
      */
-    public function mapEntityTransfersToTransfer(
-        array $fosPriceListEntityTransfers,
-        PriceListCollectionTransfer $priceListCollectionTransfer
-    ): PriceListCollectionTransfer {
-        foreach ($fosPriceListEntityTransfers as $fosPriceList) {
-            $priceListTransfer = new PriceListTransfer();
-            $priceListTransfer = $this->mapEntityTransferToTransfer($fosPriceList, $priceListTransfer);
+    public function mapEntityCollectionToTransfer(ObjectCollection $entityCollection): PriceListCollectionTransfer
+    {
+        $transfer = new PriceListCollectionTransfer();
 
-            $priceListCollectionTransfer->addPriceList($priceListTransfer);
+        foreach ($entityCollection as $object) {
+            $transfer->addPriceList($this->mapEntityToTransfer($object));
         }
 
-        return $priceListCollectionTransfer;
+        return $transfer;
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FosPriceListEntityTransfer $fosPriceListEntityTransfer
-     * @param \Generated\Shared\Transfer\PriceListTransfer $priceListTransfer
+     * @param \Orm\Zed\PriceList\Persistence\Base\FosPriceList $entity
      *
      * @return \Generated\Shared\Transfer\PriceListTransfer
      */
-    public function mapEntityTransferToTransfer(
-        FosPriceListEntityTransfer $fosPriceListEntityTransfer,
-        PriceListTransfer $priceListTransfer
-    ): PriceListTransfer {
-        return $priceListTransfer->fromArray(
-            $fosPriceListEntityTransfer->toArray(),
-            true
-        );
+    public function mapEntityToTransfer(FosPriceList $entity): PriceListTransfer
+    {
+        return (new PriceListTransfer())->fromArray($entity->toArray(), true);
     }
 }

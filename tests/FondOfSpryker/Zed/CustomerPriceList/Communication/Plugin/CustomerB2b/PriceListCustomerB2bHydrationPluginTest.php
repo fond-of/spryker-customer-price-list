@@ -53,8 +53,8 @@ class PriceListCustomerB2bHydrationPluginTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->priceListCustomerB2bHydrationPlugin->hydrate(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }

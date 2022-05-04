@@ -53,8 +53,8 @@ class PriceListCustomerTransferExpanderPluginTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->priceListCustomerTransferExpanderPlugin->expandTransfer(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }

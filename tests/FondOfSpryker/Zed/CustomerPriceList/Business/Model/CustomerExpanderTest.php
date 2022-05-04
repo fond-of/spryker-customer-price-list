@@ -54,7 +54,7 @@ class CustomerExpanderTest extends Unit
         $this->idCustomer = 1;
 
         $this->customerExpander = new CustomerExpander(
-            $this->customerPriceListRepositoryInterfaceMock
+            $this->customerPriceListRepositoryInterfaceMock,
         );
     }
 
@@ -80,8 +80,8 @@ class CustomerExpanderTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->customerExpander->expand(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 
@@ -97,8 +97,8 @@ class CustomerExpanderTest extends Unit
         $this->assertEquals(
             $this->customerTransferMock,
             $this->customerExpander->expand(
-                $this->customerTransferMock
-            )
+                $this->customerTransferMock,
+            ),
         );
     }
 }
