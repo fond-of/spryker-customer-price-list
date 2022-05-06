@@ -16,7 +16,6 @@
   },
   "require": {
     "php": ">=7.3",
-    "fond-of-spryker/customer-b2b": "dev-spryker_upgrade",
     "fond-of-spryker/price-list": "dev-master",
     "fond-of-spryker/company-price-list": "dev-master",
     "spryker/company-user": "^1.0.0 || ^2.0.0",
